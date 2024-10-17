@@ -1,22 +1,18 @@
 const mongoose = require('mongoose');
 
-// Define the Image Schema
-const imageSchema = new mongoose.Schema({
-  title: {
+const SliderImageSchema = new mongoose.Schema({
+  name: {
     type: String,
-    required: true
+    required: true,
   },
   imageUrl: {
     type: String,
-    required: true
+    required: true,
   },
-  altText: {
+  cloudinary_id: {
     type: String,
-    default: 'Image'
-  },
+    required: true,
+  }
 });
 
-// Create the Image Model from the Schema
-const SliderImage = mongoose.model('SliderImage', imageSchema);
-
-module.exports = SliderImage;
+module.exports = mongoose.model('SliderImage', SliderImageSchema);
