@@ -6,6 +6,8 @@ const imageRoutes = require('./routes/ImageSliderRoutes'); //image slider routes
 const bodyParser = require('body-parser');
 const catagoryRoutes=require('./routes/CatagoryImagesRoute')
 const contactUsRoutes =require('./routes/ContactUsRoute')
+const productRoutes = require('./routes/ProductRoutes');
+
 
 
 dotenv.config();
@@ -33,6 +35,8 @@ app.use('/images', imageRoutes);
 app.use('/catagories', catagoryRoutes); 
 
 app.use('/contact-us', contactUsRoutes);
+
+app.use('/products', productRoutes);
 
 // Start the server
 app.listen(port, () => {
