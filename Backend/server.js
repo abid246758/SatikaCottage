@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const imageRoutes = require('./routes/ImageSliderRoutes'); //image slider routes
+const bodyParser = require('body-parser');
+const catagoryRoutes=require('./routes/CatagoryImagesRoute')
+const contactUsRoutes =require('./routes/ContactUsRoute')
+const productRoutes = require('./routes/ProductRoutes');
+
+
 
 dotenv.config();
 
@@ -12,7 +18,11 @@ const mongoUri = process.env.MONGO_URI;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Enable CORS for all routes
+app.use(cors()); 
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 // Connect to MongoDB
 mongoose.connect(mongoUri)
@@ -20,7 +30,13 @@ mongoose.connect(mongoUri)
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Routes
-app.use('/api/images', imageRoutes);  // Include your image routes
+app.use('/images', imageRoutes); 
+
+app.use('/catagories', catagoryRoutes); 
+
+app.use('/contact-us', contactUsRoutes);
+
+app.use('/products', productRoutes);
 
 // Start the server
 app.listen(port, () => {
